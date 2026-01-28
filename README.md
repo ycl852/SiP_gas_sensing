@@ -15,22 +15,18 @@ This is the code for the article
  - See `requirements.txt` for the list of Python packages.
 
 ## Singel-gas detection
- - Data ----Code Implementation in  `dataset_single.py----
+ - Data ----Code Implementation in `dataset_single.py`----
 1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216_slidingAverage.pkl'`
 2. Reference Spectra in `raw_data/20241216/commercialSpectrum_20241216_slidingAverage.pkl`
 3. Gas Concentration (100 measurements per concentration)
- - Spectral reconstruction
-Code Implementation in `single_reconstruct.py`
- - Concentration prediction
-Code Implementation in `single_predict.py`
+ - Spectral reconstruction ----Code Implementation in `single_reconstruct.py`----
+ - Concentration prediction ----Code Implementation in `single_predict.py`----
 
 ## Multi-gas detection
- - Data
+ - Data ----Code Implementation in `dataset_multi.py`----
 1. Time-Domain Signals in `raw_data/20250401/threeComponentTrainingSet_sliding20250401.npy`
 2. Gas Concentration (60 measurements per concentration)
-Code Implementation in `dataset_multi.py`
- - Concentration prediction(end-to-end)
-Code Implementation in `multi_predict.py`
+ - Concentration prediction(end-to-end) ----Code Implementation in `multi_predict.py`----
 
  ## Install
  语言，运行代码的命令
