@@ -30,25 +30,51 @@ This is the code for the article
 
  ## How to install
 Code can be installed in Windows operating systems.
-Download and unzip SiP_gas_sensing.zip from this repo. 
-Create a virtual environment. Run the following command _in the demo directory_:
+1. Download and unzip SiP_gas_sensing.zip from this repo：
+```sh
+cd /path/to/pythonSiP
+```
+
+2. Create a virtual environment. Run the following command:
 ```sh
 python -m venv .venv
+```
+
+3. Activate Virtual Environment：
+```sh
 source .venv/Scripts/activate
 ```
 
-Now you should see (.venv) in your prompt
-
-Install the dependencies in a streamlined fashion. All dependencies and their versions are specified under the requirements.txt. For the purpose of this demo we want to make sure that you have exactly the environment this was tested on.
-
+4. Verify Environment：
 ```sh
-pip install -r ./requirements.txt
+which python
+which pip
+# Expected output should point to .venv directory：
 ```
 
-Finally, you need to add a kernel specification to your Jupyter notebook interface.
-
+5.  Update pip in Virtual Environment：
 ```sh
-python *.py
+python -m ensurepip --upgrade
+```
+
+6. Install Dependencies：
+```sh
+pip install tensorflow==2.15.0
+pip install numpy scikit-learn matplotlib
+pip install keras==3.9.2
+```
+
+7. Verify Installation：
+```sh
+python -c "import tensorflow as tf; print(f'TensorFlow {tf.__version__} installed')"
+python -c "import keras; print(f'Keras {keras.__version__} installed')"
+```
+
+8. Run the Prediction Script：
+```sh
+python single_reconstruct.py
+```
+
 ```
 
 
