@@ -12,44 +12,26 @@ This is the code for the article
  
 ## System requirements
  - All python codes are recommended using python IDE (PyCharm)
- - **Dependencies**: See `requirements.txt` for the full list of Python packages.
+ - See `requirements.txt` for the full list of Python packages.
 
-## Raw data
-1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216.txt'`
-2. Reference Spectra in `raw_data/20241216/commercialSpectrum_20241216.txt"`
+## Singel-gas detection
+ - Data
+1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216_slidingAverage.pkl'`
+2. Reference Spectra in `raw_data/20241216/commercialSpectrum_20241216_slidingAverage.pkl`
 3. Gas Concentration (100 measurements per concentration)
-
- ## Dataset construction
 Code Implementation in  `dataset_single.py`
-<pre><code>
- def create_dataset(data_elect, data_light, lab, test_size1, test_size2, random_state):
-    num = np.arange(data_elect.shape[0])
-    train_index, a1 = train_test_split(num, test_size=test_size1, random_state=random_state)
-    val_index, test_index = train_test_split(a1, test_size=test_size2, random_state=random_state)
-    label = np.array(lab).repeat(100)
+ - Spectral reconstruction
+Code Implementation in `single_reconstruct.py`
+ - Concentration prediction
+Code Implementation in `single_predict.py`
 
-    train_data, train_target, train_lab = extract_subset(data_elect, data_light, label, train_index)
-    val_data, val_target, val_lab = extract_subset(data_elect, data_light, label, val_index)
-    test_data, test_target, test_lab = extract_subset(data_elect, data_light, label, test_index)
+## Multi-gas detection
+ - Data
+1. Time-Domain Signals in `raw_data/20250401/threeComponentTrainingSet_sliding20250401.npy`
+2. Gas Concentration (60 measurements per concentration)
+Code Implementation in `dataset_multi.py`
+ - Concentration prediction(end-to-end)
+Code Implementation in `multi_predict.py`
 
-    return (train_data, train_target, train_lab,
-            val_data, val_target, val_lab,
-            test_data, test_target, test_lab)
-            
-def create_dataset_test(test_data, test_target, test_lab):
-    num = np.arange(test_data.shape[0])
-    test_label = np.array(test_lab).repeat(100)
-    np.random.shuffle(num)
- 
-    return test_data[num], test_target[num], test_label[num]
-</code></pre>
-
- ## Model architecture
-1. Spectral Reconstruction Model in `model_cnn_eca_lstm_mlp.py`
-2. Concentration Prediction Model in `model_mlp.py`
-
- ## Training
-1. Spectral Reconstruction Training in `train_single_reconstruct.py`
-2. Concentration Prediction Training in `train_single_predict.py`
-
- ## bash语言，运行代码的命令
+ ## Install
+ 语言，运行代码的命令
