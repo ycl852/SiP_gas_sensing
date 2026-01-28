@@ -4,7 +4,7 @@ This is the code for the article
 ## Overview
  These codes were written for a scientific paper 'Laboratory-grade infrared spectroscopy in a centimetre-scale photonic package' and demo of the results. The codes enable reproduction of key results including spectral reconstruction and concentration prediction.
 
-##  Usage Notice 
+##  Usage notice 
  - Unauthorized use of this code and database for other purpose is prohibited.
  - This code is provided for academic verification purposes only. Commercial use or application beyond the described scope requires explicit permission.
  - The database  for demo, not code, is for demonstrating the operation of the model, and unauthorized or commercial use is prohibited. 
