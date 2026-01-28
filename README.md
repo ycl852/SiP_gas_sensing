@@ -12,14 +12,13 @@ This is the code for the article
  
 ## System requirements
  - All python codes are recommended using python IDE (PyCharm)
- - See `requirements.txt` for the full list of Python packages.
+ - See `requirements.txt` for the list of Python packages.
 
 ## Singel-gas detection
- - Data
+ - Data ----Code Implementation in  `dataset_single.py----
 1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216_slidingAverage.pkl'`
 2. Reference Spectra in `raw_data/20241216/commercialSpectrum_20241216_slidingAverage.pkl`
 3. Gas Concentration (100 measurements per concentration)
-Code Implementation in  `dataset_single.py`
  - Spectral reconstruction
 Code Implementation in `single_reconstruct.py`
  - Concentration prediction
