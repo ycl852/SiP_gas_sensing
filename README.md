@@ -2,7 +2,7 @@
 This is the code for the article
 
 ## Overview
- These codes were written for a scientific paper 'Laboratory-grade infrared spectroscopy in a centimetre-scale photonic package' and demo of the results. The codes enable reproduction of key results including data preprocessing, spectral reconstruction and concentration prediction.
+ These codes were written for a scientific paper 'Laboratory-grade infrared spectroscopy in a centimetre-scale photonic package' and demo of the results. The codes enable reproduction of key results including spectral reconstruction and concentration prediction.
 
 ##  Usage Notice 
  - Unauthorized use of this code and database for other purpose is prohibited.
@@ -12,15 +12,12 @@ This is the code for the article
  
 ## System requirements
  - All python codes are recommended using python IDE (PyCharm)
-环境的要求
+ - **Dependencies**: See `requirements.txt` for the full list of Python packages.
 
 ## Raw data
 1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216.txt'`
 2. Reference Spectra in `raw_data/20241216/commercialSpectrum_20241216.txt"`
 3. Gas Concentration (100 measurements per concentration)
-lab = [0, 200, 400, 600, 800, 1000,
-       1200, 1400, 1600, 1800, 2000,
-       2200, 2400, 2600, 2800, 3000]
 
  ## Dataset construction
 Code Implementation in  `dataset_single.py`
