@@ -28,5 +28,11 @@ This is the code for the article
 2. Gas Concentration (60 measurements per concentration)
  - Concentration prediction(end-to-end) ----Code Implementation in `multi_predict.py`----
 
- ## Install
- 语言，运行代码的命令
+ ## How to install
+Code can be installed in Windows operating systems.
+Download and unzip SiP_gas_sensing.zip from this repo. 
+Create a virtual environment. Run the following command _in the demo directory_:
+```sh
+python -m venv --prompt "dtcs" .venv
+source .venv/bin/activate
+```
