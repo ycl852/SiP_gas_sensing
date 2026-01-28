@@ -33,6 +33,23 @@ Code can be installed in Windows operating systems.
 Download and unzip SiP_gas_sensing.zip from this repo. 
 Create a virtual environment. Run the following command _in the demo directory_:
 ```sh
-python -m venv --prompt "dtcs" .venv
-source .venv/bin/activate
+python -m venv .venv
+source .venv/Scripts/activate
 ```
+
+Now you should see (.venv) in your prompt
+
+Install the dependencies in a streamlined fashion. All dependencies and their versions are specified under the requirements.txt. For the purpose of this demo we want to make sure that you have exactly the environment this was tested on.
+
+```sh
+pip install -r ./requirements.txt
+```
+
+Finally, you need to add a kernel specification to your Jupyter notebook interface.
+
+```sh
+python *.py
+```
+
+
+
