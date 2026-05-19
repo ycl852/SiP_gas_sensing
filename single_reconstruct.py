@@ -11,6 +11,7 @@ from model.model_cnn_lstm_eca_mlp import build_spectrum_model
 from sklearn import metrics
 from sklearn.metrics import r2_score
 
+
 def train_model(model, X_train, Y_train, X_val, Y_val,
                 epochs=100, batch_size=16, alpha=2.0, sigma=1.0,
                 learning_rate=0.001, min_delta=0.0001, patience=100,
@@ -18,16 +19,7 @@ def train_model(model, X_train, Y_train, X_val, Y_val,
     """
         Args:
             CNN-ECA-LSTM model for spectral reconstruction
-            X_train, Y_train: Time-domain signals and reference spectra
-            X_val, Y_val: Time-domain signals and reference spectra
-            epochs: Maximum number of training epochs
-            batch_size: Batch size for training
-            alpha, sigma: Hyperparameters for SequenceCMixup augmentation
-            learning_rate: Learning rate for Adam optimizer
-            min_delta: Minimum improvement threshold for early stopping
-            patience: Patience for early stopping (number of epochs without improvement)
-            save_path: Directory path to save model weights and checkpoints
-
+            ... (rest of the docstring is the same)
         Returns:
             history: Dictionary containing training history
     """
@@ -77,21 +69,25 @@ def train_model(model, X_train, Y_train, X_val, Y_val,
     best_epoch = 0
     best_model_weights = None
 
+    num_train_batches = len(train_dataset)
+
+    print("Starting training...")
     for epoch in range(epochs):
-        print(f"\nEpoch {epoch + 1}/{epochs}")
-
         epoch_train_loss = 0.0
-        train_batches = 0
 
-        for batch_x, batch_y in train_dataset:
+        for i, (batch_x, batch_y) in enumerate(train_dataset):
+            progress_text = f"Epoch {epoch + 1}/{epochs}: Training batch {i + 1}/{num_train_batches}"
+            print(f"\r{progress_text}", end="", flush=True)
+
             mixed_x, mixed_y = sequence_mixer(batch_x, batch_y)
             loss_value, _ = train_step(model, optimizer, loss_fn, mixed_x, mixed_y)
             epoch_train_loss += loss_value
-            train_batches += 1
-        avg_train_loss = epoch_train_loss / train_batches
+
+        print(f"\r{' ' * len(progress_text)}\r", end="", flush=True)
+
+        avg_train_loss = epoch_train_loss / num_train_batches
 
         epoch_val_loss = 0.0
-        val_batches = 0
         val_preds = []
         val_targets = []
         for batch_x, batch_y in val_dataset:
@@ -99,46 +95,42 @@ def train_model(model, X_train, Y_train, X_val, Y_val,
             epoch_val_loss += loss_value
             val_preds.extend(preds)
             val_targets.extend(batch_y)
-            val_batches += 1
 
         val_preds_cat = tf.concat(val_preds, axis=0)
         val_truth_cat = tf.concat(val_targets, axis=0)
-        avg_val_loss = epoch_val_loss / val_batches
+        avg_val_loss = epoch_val_loss / len(val_dataset)
         avg_val_r2 = r2_score(val_truth_cat.numpy(), val_preds_cat.numpy())
 
         history['train_loss'].append(avg_train_loss)
         history['val_loss'].append(avg_val_loss)
         history['val_r2'].append(avg_val_r2)
 
-        improvement_msg = ""
+        improvement_details = ""
         if avg_val_loss < best_val_loss - min_delta:
             best_val_loss = avg_val_loss
             best_model_weights = model.get_weights()
             patience_counter = 0
             best_epoch = epoch + 1
-            improvement_msg = f"★ best (Val Loss: {best_val_loss:.6f})"
-
+            improvement_details = "(New best, saving model)"
             model.save_weights(f'{save_path}/best_model.weights.h5')
         else:
             patience_counter += 1
-            improvement_msg = f"stop number: {patience_counter}/{patience}"
+            improvement_details = f"(Patience: {patience_counter}/{patience})"
 
-        if (epoch + 1) % 1 == 0:
-            print(
-                f'Epoch [{epoch + 1}/{epochs}], '
-                f'Train Loss: {avg_train_loss:.4f}, '
-                f'Val Loss: {avg_val_loss:.4f}, Val R2: {avg_val_r2:.4f}, '
-                f'{improvement_msg}')
+        print(f"Epoch {epoch + 1}/{epochs} - "
+              f"loss: {avg_train_loss:.4f} - "
+              f"val_loss: {avg_val_loss:.4f} - "
+              f"val_r2: {avg_val_r2:.4f} {improvement_details}")
 
         if patience_counter >= patience:
-            print(f"stop training at epoch {epoch + 1}")
-            print(f"best model at epoch {best_epoch}，val_loss: {best_val_loss:.6f}")
+            print(f"\nEarly stopping triggered at epoch {epoch + 1}.")
+            print(f"Best model was from epoch {best_epoch} with val_loss: {best_val_loss:.6f}")
             break
 
     if best_model_weights is not None:
         model.set_weights(best_model_weights)
 
-    print("save final model...")
+    print("\nSaving final model weights...")
     model.save_weights(f'{save_path}/final_model.weights.h5')
 
     history.update({
@@ -236,9 +228,9 @@ def main():
 
     start_time = time.time()
     history = train_model(model, X_train, Y_train, X_val, Y_val,
-                epochs=epochs, batch_size=batch_size, alpha=alpha, sigma=sigma,
-                learning_rate=learning_rate, min_delta=min_delta, patience=patience,
-                save_path=save_path)
+                          epochs=epochs, batch_size=batch_size, alpha=alpha, sigma=sigma,
+                          learning_rate=learning_rate, min_delta=min_delta, patience=patience,
+                          save_path=save_path)
     end_time = time.time()
 
     print(f'Total training time: {(end_time - start_time):.2f} Seconds')
@@ -270,18 +262,6 @@ def main():
 
     test(model, train_data, val_data, test_data, save_path)
 
+
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
