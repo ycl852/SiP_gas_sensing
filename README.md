@@ -99,7 +99,6 @@ R2: 0.9869144652016657
 ~4–10 seconds/epoch (depending on CPU and hardware)
 ```
 
-
 ## Singel-gas detection
  - Data ----Code Implementation in `dataset_single.py`----
 1. Time-Domain Signals in `raw_data/20241216/O_ch4_experimentData_20241216_slidingAverage.pkl'`
