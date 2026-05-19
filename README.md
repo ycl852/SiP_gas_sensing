@@ -78,6 +78,8 @@ python single_reconstruct.py
 ```
  Expected output:
  ```
+<img width="2986" height="1568" alt="image" src="https://github.com/user-attachments/assets/c9fb43c7-8977-4d12-9064-38aeda11949e" />
+
  Loading model...
  Processing sample 1/5 ...
  Reconstruction error: 0.0234
