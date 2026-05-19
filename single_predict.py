@@ -124,7 +124,7 @@ def train_model(model, X_train, Y_train, X_val, Y_val,
             best_model_weights = model.get_weights()
             patience_counter = 0
             best_epoch = epoch + 1
-            improvement_msg = f"★ best (Val Loss: {best_val_loss:.6f})"
+            improvement_msg = f"best (Val Loss: {best_val_loss:.6f})"
 
             model.save_weights(f'{save_path}/best_model.weights.h5')
         else:
@@ -139,7 +139,7 @@ def train_model(model, X_train, Y_train, X_val, Y_val,
                 f'{improvement_msg}')
 
         if patience_counter >= patience:
-            print(f"\n⚠️  stop training at epoch {epoch + 1}")
+            print(f"stop training at epoch {epoch + 1}")
             print(f"best model at epoch {best_epoch}，val_loss: {best_val_loss:.6f}")
             break
 
