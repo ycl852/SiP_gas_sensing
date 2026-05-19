@@ -78,18 +78,25 @@ python single_reconstruct.py
 ```
  Expected output:
  ```
-<img width="2986" height="1568" alt="image" src="https://github.com/user-attachments/assets/c9fb43c7-8977-4d12-9064-38aeda11949e" />
+Early stopping triggered at epoch 76.
+Best model was from epoch 56 with val_loss: 0.003274
 
- Loading model...
- Processing sample 1/5 ...
- Reconstruction error: 0.0234
+Saving final model weights...
+Total training time: 2343.95 Seconds
+Average time per epoch: 4.6879 Seconds
+ 1/35 ━━━━━━━━━━━━━━━━━━━━ 21s 630ms/step
+ 2/35 ━━━━━━━━━━━━━━━━━━━━ 6s 205ms/step
+ 3/35 ━━━━━━━━━━━━━━━━━━━━ 6s 202ms/step
  ...
- All predictions saved to output/predictions.csv
+
+MSE: 0.0033262191614812525
+RMSE: 0.05767338347523277
+R2: 0.9869144652016657
  ```
 
 10. Expected run time for demo:
 ```sh
-~20–40 seconds/epoch (depending on CPU and hardware)
+~4–10 seconds/epoch (depending on CPU and hardware)
 ```
 
 
