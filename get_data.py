@@ -29,7 +29,7 @@ def save_to_pickle3(data_tuple, save_path):
     with open(save_path, 'wb') as f:
         pickle.dump(data_dict, f)
 
-    print(f"✓ save in {save_path}")
+    print(f"save in {save_path}")
 
 
 class CMixup:
