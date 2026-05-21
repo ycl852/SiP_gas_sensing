@@ -24,7 +24,7 @@ This is the code for the article
 - None (runs on any standard desktop/laptop).  
 
  ## How to install
-Code can be installed in Windows operating systems.
+This framework has been fully developed, deployed and validated within the MobaXterm terminal environment interfacing with a 64-bit backend server.
 1. Download and unzip SiP_gas_sensing.zip from this repo：
 ```sh
 cd /path/to/pythonSiP
