@@ -2,7 +2,7 @@
 This is the code for the article
 
 ## Overview
- These codes were written for a scientific paper 'Laboratory-grade infrared spectroscopy in a centimetre-scale photonic package' and demo of the results. The codes enable reproduction of key results including spectral reconstruction and concentration prediction.
+ These codes were written for a scientific paper 'High-performance infrared spectroscopy in a centimetre-scale photonic package' and demo of the results. The codes enable reproduction of key results including spectral reconstruction and concentration prediction.
 
 ##  Usage notice 
  - Unauthorized use of this code and database for other purpose is prohibited.
